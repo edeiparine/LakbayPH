@@ -16,7 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.lavacake.simpleapp.fragments.CheeseListFragment;
-import com.example.lavacake.simpleapp.fragments.WeatherListFragment;
+import com.example.lavacake.simpleapp.fragments.WeatherFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new CheeseListFragment(), "Top Rated");
         adapter.addFragment(new CheeseListFragment(), "Places");
-        adapter.addFragment(new WeatherListFragment(), "Weather");
+        adapter.addFragment(new WeatherFragment(), "Weather");
         viewPager.setAdapter(adapter);
     }
 

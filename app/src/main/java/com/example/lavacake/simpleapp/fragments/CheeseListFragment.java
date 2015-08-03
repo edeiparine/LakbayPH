@@ -19,6 +19,9 @@ import java.util.Random;
 
 public class CheeseListFragment extends Fragment {
 
+
+    
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         RecyclerView rv = (RecyclerView) inflater.inflate(R.layout.fragment_cheese_list, container, false);
@@ -27,9 +30,10 @@ public class CheeseListFragment extends Fragment {
     }
 
     private void setupRecyclerView(RecyclerView recyclerView) {
+        CheeseAdapter cheeseAdapter = new CheeseAdapter(getActivity(), getRandomSublist(Cheeses.sCheeseStrings, 30));
+
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
-        recyclerView.setAdapter(new CheeseAdapter(getActivity(),
-                getRandomSublist(Cheeses.sCheeseStrings, 30)));
+        recyclerView.setAdapter(cheeseAdapter);
     }
 
     private List<String> getRandomSublist(String[] array, int amount) {
@@ -40,4 +44,5 @@ public class CheeseListFragment extends Fragment {
         }
         return list;
     }
+
 }

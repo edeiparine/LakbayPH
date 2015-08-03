@@ -1,6 +1,7 @@
 package com.example.lavacake.simpleapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.lavacake.simpleapp.CheeseDetailActivity;
 import com.example.lavacake.simpleapp.Cheeses;
 import com.example.lavacake.simpleapp.R;
 
@@ -25,6 +27,10 @@ public class CheeseAdapter extends RecyclerView.Adapter<CheeseAdapter.ViewHolder
     private int mBackground;
     private List<String> mValues;
 
+    public CheeseAdapter(List<String> items) {
+        mBackground = mTypedValue.resourceId;
+        mValues = items;
+    }
 
     public CheeseAdapter(Context context, List<String> items) {
         context.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
@@ -45,11 +51,24 @@ public class CheeseAdapter extends RecyclerView.Adapter<CheeseAdapter.ViewHolder
         holder.mBoundString = mValues.get(position);
         holder.mTextView.setText(mValues.get(position));
 
+        holder.mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, CheeseDetailActivity.class);
+                intent.putExtra(CheeseDetailActivity.EXTRA_NAME, holder.mBoundString);
+
+                context.startActivity(intent);
+            }
+        });
+
         Glide.with(holder.mImageView.getContext())
                 .load(Cheeses.getRandomCheeseDrawable())
                 .fitCenter()
                 .into(holder.mImageView);
     }
+
+
 
     public String getValueAt(int position) {
         return mValues.get(position);

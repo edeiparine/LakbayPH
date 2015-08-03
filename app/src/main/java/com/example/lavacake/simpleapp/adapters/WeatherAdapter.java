@@ -1,6 +1,7 @@
 package com.example.lavacake.simpleapp.adapters;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -15,10 +16,11 @@ import com.example.lavacake.simpleapp.R;
 
 import java.util.List;
 
-
 /**
  * Created by lavacake on 7/7/2015.
  */
+//public class WeatherAdapter  {
+
 public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHolder> {
 
 
@@ -34,8 +36,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_forecast, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
         view.setBackgroundResource(mBackground);
         return new ViewHolder(view);
     }
@@ -62,16 +63,17 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public String mBoundString;
-
+        CardView cv;
         public final View mView;
         public final ImageView mImageView;
         public final TextView mTextView;
 
         public ViewHolder(View view) {
             super(view);
+            cv = (CardView) itemView.findViewById(R.id.cv);
             mView = view;
-            mImageView = (ImageView) view.findViewById(R.id.logo);
-            mTextView = (TextView) view.findViewById(R.id.list_item_forecast_textview);
+            mImageView = (ImageView) view.findViewById(R.id.avatar);
+            mTextView = (TextView) view.findViewById(android.R.id.text1);
         }
 
         @Override
@@ -79,5 +81,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
             return super.toString() + " '" + mTextView.getText();
         }
     }
+
+
 }
 
